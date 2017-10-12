@@ -1,8 +1,10 @@
 """
-Reading file
+Previous work on data
 """
 
 import csv
+import collections
+
 
 file = open('full_data.csv')
 reader = csv.reader(file)
@@ -35,11 +37,6 @@ for row in gun_data:
 
 gun_data = gun_data_fixed
 
-# ==================================================================
-
-import collections
-
-gun_data = gun_data_fixed
 gun_data_year = [row[1] for row in gun_data]
 
 gun_stats_year = collections.Counter()
@@ -47,9 +44,13 @@ gun_stats_year = collections.Counter()
 for year in gun_data_year:
     gun_stats_year[year] += 1
 
-# print(gun_stats_year)
-
 # ==================================================================
+
+"""
+Looking at Death VS year-month
+Part 1 is similar to previous of looking at count every month.
+Part 2 is drawing graph with it.
+"""
 
 from datetime import datetime
 import matplotlib.pyplot as plt

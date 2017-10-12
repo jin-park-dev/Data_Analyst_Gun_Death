@@ -1,8 +1,11 @@
 """
-Reading file
+Previous work on data
 """
 
 import csv
+import collections
+import matplotlib.pyplot as plt
+
 
 file = open('full_data.csv')
 reader = csv.reader(file)
@@ -13,7 +16,7 @@ gun_data = gun_data[1:]
 
 # Changing category to number
 
-#1. Finding all unique values
+# Finding all unique values
 
 education_list = []
 for row in gun_data:
@@ -37,44 +40,14 @@ gun_data = gun_data_fixed
 
 # ==================================================================
 
-import collections
+"""
+Investigating death by race
+Investigating death by sex
+"""
 
-gun_data = gun_data_fixed
-gun_data_year = [row[1] for row in gun_data]
+# Makings some methods dues to repeating of code.
 
-gun_stats_year = collections.Counter()
-
-for year in gun_data_year:
-    gun_stats_year[year] += 1
-
-# print(gun_stats_year)
-
-# ==================================================================
-
-from datetime import datetime
-import matplotlib.pyplot as plt
-
-#extracting year, month
-gun_dates = [datetime(year=int(row[1]), month=int(row[2]), day=1) for row in gun_data]
-
-gun_stats_month = collections.Counter()
-
-for date in gun_dates:
-    gun_stats_month[date] += 1
-
-# print(gun_stats_month.most_common(10))
-
-# Drawing graph with it.
-gun_stats_month_List = list(gun_stats_month.items())
-graph_gun_stats_month_dates = [row[0] for row in gun_stats_month_List]
-graph_gun_stats_month_counts = [row[1] for row in gun_stats_month_List]
-
-plt.style.use('ggplot')
-# plt.plot(graph_gun_stats_month_dates, graph_gun_stats_month_counts)
-# plt.show()
-
-# ==================================================================
-
+# Shows count of an column
 def get_counts(column_number):
     temp_data = [row[column_number] for row in gun_data]
     temp_counter = collections.Counter()
@@ -82,6 +55,7 @@ def get_counts(column_number):
         temp_counter[item] += 1
     return temp_counter
 
+# Using collections data of above method, makes data to draw graph with.
 def get_graph_data(collection):
     collection_list = list(collection.items())
     x_list = [row[0] for row in collection_list]
@@ -89,10 +63,10 @@ def get_graph_data(collection):
     return x_list, y_list
 
 
-# print(plt.style.available)
+# print(plt.style.available) # An way to see all the pre-made ways to make graph look pretty.
 plt.style.use('fivethirtyeight')
 
-# Showing gun stats by gender
+# 1. Showing gun stats by gender
 gun_stats_sex = get_counts(5) #5 is position of sex
 x_gun_stats_sex, y_gun_stats_sex = get_graph_data(gun_stats_sex)
 
@@ -105,7 +79,7 @@ plt.xticks(range(len(x_gun_stats_sex)), x_gun_stats_sex)
 plt.tight_layout()
 plt.show()
 
-# Showing gun stats by race
+# 2. Showing gun stats by race
 gun_stats_race = get_counts(7) #7 is position of race
 x_gun_stats_race, y_gun_stats_race = get_graph_data(gun_stats_race)
 
@@ -119,12 +93,11 @@ plt.tight_layout()
 plt.show()
 
 
-
-
 """
-Issue, I don't know total number of population by race so even though 'Native American/Native Alaskan' is lowest, it might be because they are tiny population.
+Note:
+Issue, I don't know total number of population by race so even though 'Native American/Native Alaskan' is lowest.
+It might be because they are tiny population.
 
-Really need to look by percentage of crime.
-Maybe do a parody?
+This is addressed in next.
 """
 

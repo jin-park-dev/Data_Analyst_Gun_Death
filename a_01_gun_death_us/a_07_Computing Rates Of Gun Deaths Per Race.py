@@ -1,8 +1,11 @@
 """
-Reading file
+Previous work on data
 """
 
 import csv
+import collections
+from datetime import datetime
+import matplotlib.pyplot as plt
 
 file = open('full_data.csv')
 reader = csv.reader(file)
@@ -35,46 +38,9 @@ for row in gun_data:
 
 gun_data = gun_data_fixed
 
-# ==================================================================
+# Makings some methods dues to repeating of code.
 
-import collections
-
-gun_data = gun_data_fixed
-gun_data_year = [row[1] for row in gun_data]
-
-gun_stats_year = collections.Counter()
-
-for year in gun_data_year:
-    gun_stats_year[year] += 1
-
-# print(gun_stats_year)
-
-# ==================================================================
-
-from datetime import datetime
-import matplotlib.pyplot as plt
-
-#extracting year, month
-gun_dates = [datetime(year=int(row[1]), month=int(row[2]), day=1) for row in gun_data]
-
-gun_stats_month = collections.Counter()
-
-for date in gun_dates:
-    gun_stats_month[date] += 1
-
-# print(gun_stats_month.most_common(10))
-
-# Drawing graph with it.
-gun_stats_month_List = list(gun_stats_month.items())
-graph_gun_stats_month_dates = [row[0] for row in gun_stats_month_List]
-graph_gun_stats_month_counts = [row[1] for row in gun_stats_month_List]
-
-plt.style.use('ggplot')
-# plt.plot(graph_gun_stats_month_dates, graph_gun_stats_month_counts)
-# plt.show()
-
-# ==================================================================
-
+# Shows count of an column
 def get_counts(column_number):
     temp_data = [row[column_number] for row in gun_data]
     temp_counter = collections.Counter()
@@ -82,64 +48,29 @@ def get_counts(column_number):
         temp_counter[item] += 1
     return temp_counter
 
+# Using collections data of above method, makes data to draw graph with.
 def get_graph_data(collection):
     collection_list = list(collection.items())
     x_list = [row[0] for row in collection_list]
     y_list = [row[1] for row in collection_list]
     return x_list, y_list
 
-'''
-# print(plt.style.available)
-plt.style.use('fivethirtyeight')
-
-# Showing gun stats by gender
-gun_stats_sex = get_counts(5) #5 is position of sex
-x_gun_stats_sex, y_gun_stats_sex = get_graph_data(gun_stats_sex)
-
-plt.title('By gender')
-plt.xlabel('Death')
-plt.ylabel('Gender')
-plt.bar(range(len(x_gun_stats_sex)), y_gun_stats_sex)
-plt.xticks(range(len(x_gun_stats_sex)), x_gun_stats_sex)
-
-plt.tight_layout()
-plt.show()
-
-# Showing gun stats by race
-gun_stats_race = get_counts(7) #7 is position of race
-x_gun_stats_race, y_gun_stats_race = get_graph_data(gun_stats_race)
-
-plt.title('By race')
-plt.xlabel('Death')
-plt.ylabel('Race')
-plt.bar(range(len(y_gun_stats_race)), y_gun_stats_race)
-plt.xticks(range(len(x_gun_stats_race)), x_gun_stats_race)
-
-plt.tight_layout()
-plt.show()
-'''
-
-
-
 """
-Issue, I don't know total number of population by race so even though 'Native American/Native Alaskan' is lowest, it might be because they are tiny population.
-
-Really need to look by percentage of crime.
-Maybe do a parody?
+Reading in data which shows number of whole population per race.
 """
-
-# ==================================================================
-
 
 file_census = open('b_census.csv')
 reader_census = csv.reader(file_census)
-
 census_data = list(reader_census)
-# print(census_data)
-
 
 # ==================================================================
 
+"""
+Looking at 
+(Gun death per 100,000) vs (Race) 
+"""
+
+# Using census data to convert death count to death count per 100,000 of that race.
 census_data_dict = dict(zip(census_data[0], census_data[1]))
 
 race_mapping = {
@@ -153,7 +84,6 @@ race_mapping = {
 gun_stats_race = get_counts(7)
 gun_stats_race_dict = dict(gun_stats_race)
 
-
 gun_stats_race_per = gun_stats_race_dict
 
 for key, value in gun_stats_race_dict.items():
@@ -161,12 +91,15 @@ for key, value in gun_stats_race_dict.items():
 
 print(gun_stats_race_dict)
 
+
+# Drawing graph with data
+plt.style.use('fivethirtyeight')
 x_gun_stats_race_per = gun_stats_race_dict.keys()
 y_gun_stats_race_per = gun_stats_race_dict.values()
 
 plt.title('By race')
-plt.xlabel('Death')
-plt.ylabel('Race')
+plt.xlabel('Race')
+plt.ylabel('Death per 100,000')
 plt.bar(range(len(y_gun_stats_race_per)), y_gun_stats_race_per)
 plt.xticks(range(len(x_gun_stats_race_per)), x_gun_stats_race_per)
 

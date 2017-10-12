@@ -10,20 +10,22 @@ reader = csv.reader(file)
 
 # ==================================================================
 
+"""
+Cleaning Data 
+"""
 
 gun_data = list(reader)
 header = gun_data[0]
 gun_data = gun_data[1:]
 
 # Changing category to number
-
 #1. Finding all unique values
 
 education_list = []
 for row in gun_data:
     education_list.append(row[10])
 
-# print(set(education_list))
+print(set(education_list))
 
 education_replace = {
     'Less than HS': 1,

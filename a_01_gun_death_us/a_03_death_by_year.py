@@ -1,5 +1,5 @@
 """
-Reading file
+Previous work on data
 """
 
 import csv
@@ -37,7 +37,15 @@ gun_data = gun_data_fixed
 
 # ==================================================================
 
+"""
+Looking at death by year
+
+Using collections to count that number of death in that year. Collections has advantage over dictionary here in that 
+we don't have to define key at start, and it can add automatically as required.
+"""
+
 import collections
+
 
 gun_data = gun_data_fixed
 gun_data_year = [row[1] for row in gun_data]

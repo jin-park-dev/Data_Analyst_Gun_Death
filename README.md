@@ -3,6 +3,7 @@
 In this project I look at dataset from FiveThirtyEight of gun death from 2012 to 2014 to explore.
 
 I looked by
+
 	• Month, homicide
 	• Month, suicide
 	• Intent of gun

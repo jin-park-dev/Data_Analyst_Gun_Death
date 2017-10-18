@@ -4,10 +4,6 @@ import matplotlib.pyplot as plt
 
 gun_data = pd.read_csv('full_data.csv', index_col='Unnamed: 0')
 
-# Changing category to number
-
-#1. Finding all unique values
-
 education_replace = {
     'Less than HS': 1,
     'HS/GED': 2,
@@ -24,8 +20,9 @@ gun_data['date'] = pd.to_datetime(gun_data['date'], format='%Y-%m-%d')
 
 # ==================================================================
 
-plt.style.use('seaborn')
-
+"""
+Investigating intended use of gun in gun death 
+"""
 
 def display_info_by(col):
     count_by_col = gun_data[col].value_counts(sort=False)
@@ -42,5 +39,5 @@ def display_info_by(col):
     ax.legend().remove()
     plt.show()
 
-
+plt.style.use('seaborn')
 display_info_by('intent')

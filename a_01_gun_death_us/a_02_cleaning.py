@@ -1,7 +1,3 @@
-"""
-Reading file
-"""
-
 import csv
 
 file = open('full_data.csv')

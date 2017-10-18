@@ -4,10 +4,6 @@ import matplotlib.pyplot as plt
 
 gun_data = pd.read_csv('full_data.csv', index_col='Unnamed: 0')
 
-# Changing category to number
-
-#1. Finding all unique values
-
 education_replace = {
     'Less than HS': 1,
     'HS/GED': 2,
@@ -19,6 +15,11 @@ education_replace = {
 gun_data['education'] = gun_data['education'].map(education_replace)
 
 # ==================================================================
+
+"""
+Looking at 
+(Gun death per 100,000) vs (Race) 
+"""
 
 race_mapping = {
     "Asian/Pacific Islander": 15159516 + 674625,
@@ -52,5 +53,6 @@ def display_info_by_race(col):
     ax.legend().remove()
     plt.show()
 
+plt.style.use('seaborn')
 display_info_by_race('race')
 

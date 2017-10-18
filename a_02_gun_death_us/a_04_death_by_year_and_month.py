@@ -6,8 +6,6 @@ gun_data = pd.read_csv('full_data.csv', index_col='Unnamed: 0')
 
 # Changing category to number
 
-#1. Finding all unique values
-
 education_replace = {
     'Less than HS': 1,
     'HS/GED': 2,
@@ -19,6 +17,10 @@ education_replace = {
 gun_data['education'] = gun_data['education'].map(education_replace)
 
 # ==================================================================
+
+"""
+Looking at Gun Death Count VS year-month
+"""
 
 # Adding arbitrary day to make date
 gun_data['day'] = 1
@@ -32,6 +34,7 @@ count_by_month['x_label'] = count_by_month['x_label'].dt.year.astype(str) + '-' 
 count_by_month = count_by_month.sort_index(0)
 print(count_by_month)
 
+plt.style.use('seaborn')
 ax = count_by_month.plot.bar(count_by_month['count'])
 ax.set_xticklabels(count_by_month['x_label'])
 ax.set_title('Gun Deaths By Month And Year')

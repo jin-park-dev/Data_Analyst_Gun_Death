@@ -4,8 +4,6 @@ import matplotlib.pyplot as plt
 
 gun_data = pd.read_csv('full_data.csv', index_col='Unnamed: 0')
 
-# Changing category to number
-
 education_replace = {
     'Less than HS': 1,
     'HS/GED': 2,
@@ -21,6 +19,10 @@ gun_data['date'] = gun_data['year'].astype(str) + '-' + gun_data['month'].astype
 gun_data['date'] = pd.to_datetime(gun_data['date'], format='%Y-%m-%d')
 
 # ==================================================================
+
+"""
+Further investigation into suicide and homicide by race and gender 
+"""
 
 race_mapping = {
     "Asian/Pacific Islander": 15159516 + 674625,

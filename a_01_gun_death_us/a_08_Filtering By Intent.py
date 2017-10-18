@@ -83,7 +83,7 @@ race_mapping = {
 # ==================================================================
 
 """
-Looking at 
+Looking at (Gun death per 100,000) vs (Race, and homicide only) 
 """
 
 # Filtering for intent

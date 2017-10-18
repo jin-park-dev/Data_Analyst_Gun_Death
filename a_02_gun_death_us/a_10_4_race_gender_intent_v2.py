@@ -22,6 +22,10 @@ gun_data['date'] = pd.to_datetime(gun_data['date'], format='%Y-%m-%d')
 
 # ==================================================================
 
+"""
+Further investigation into suicide and homicide by race and gender 
+"""
+
 race_mapping = {
     "Asian/Pacific Islander": 15159516 + 674625,
     "Native American/Native Alaskan": 3739506,

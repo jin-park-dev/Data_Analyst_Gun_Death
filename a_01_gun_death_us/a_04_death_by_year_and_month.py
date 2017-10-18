@@ -13,10 +13,6 @@ gun_data = list(reader)
 header = gun_data[0]
 gun_data = gun_data[1:]
 
-# Changing category to number
-
-#1. Finding all unique values
-
 education_list = []
 for row in gun_data:
     education_list.append(row[10])
@@ -71,5 +67,5 @@ graph_gun_stats_month_dates = [row[0] for row in gun_stats_month_List]
 graph_gun_stats_month_counts = [row[1] for row in gun_stats_month_List]
 
 plt.style.use('ggplot')
-plt.bar(graph_gun_stats_month_dates, graph_gun_stats_month_counts)
+plt.bar(graph_gun_stats_month_dates, graph_gun_stats_month_counts, width=10)
 plt.show()

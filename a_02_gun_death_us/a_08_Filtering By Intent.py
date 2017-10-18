@@ -20,6 +20,10 @@ gun_data['education'] = gun_data['education'].map(education_replace)
 
 # ==================================================================
 
+"""
+Looking at (Gun death per 100,000) vs (Race, and homicide only) 
+"""
+
 race_mapping = {
     "Asian/Pacific Islander": 15159516 + 674625,
     "Native American/Native Alaskan": 3739506,

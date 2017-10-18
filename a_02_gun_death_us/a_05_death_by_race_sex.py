@@ -4,10 +4,6 @@ import matplotlib.pyplot as plt
 
 gun_data = pd.read_csv('full_data.csv', index_col='Unnamed: 0')
 
-# Changing category to number
-
-#1. Finding all unique values
-
 education_replace = {
     'Less than HS': 1,
     'HS/GED': 2,
@@ -19,6 +15,11 @@ education_replace = {
 gun_data['education'] = gun_data['education'].map(education_replace)
 
 # ==================================================================
+
+"""
+Investigating death by race
+Investigating death by sex
+"""
 
 def display_info_by(col):
     count_by_col = gun_data[col].value_counts(sort=False)

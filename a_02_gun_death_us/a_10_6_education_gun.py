@@ -4,8 +4,6 @@ import matplotlib.pyplot as plt
 
 gun_data = pd.read_csv('full_data.csv', index_col='Unnamed: 0')
 
-# Changing category to number
-
 education_replace = {
     'Less than HS': 1,
     'HS/GED': 2,
@@ -22,9 +20,9 @@ gun_data['date'] = pd.to_datetime(gun_data['date'], format='%Y-%m-%d')
 
 # ==================================================================
 
-######
-# Finding intent of gun education vs gun death
-######
+"""
+Investigation Gun death vs Education level 
+"""
 
 
 def display_info_by(col):

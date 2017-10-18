@@ -4,10 +4,6 @@ import matplotlib.pyplot as plt
 
 gun_data = pd.read_csv('full_data.csv', index_col='Unnamed: 0')
 
-# Changing category to number
-
-#1. Finding all unique values
-
 education_replace = {
     'Less than HS': 1,
     'HS/GED': 2,

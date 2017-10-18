@@ -22,9 +22,9 @@ gun_data['date'] = pd.to_datetime(gun_data['date'], format='%Y-%m-%d')
 
 # ==================================================================
 
-######
-# Finding intent of gun education vs intent
-######
+"""
+Investigation Gun death vs Education level 
+"""
 
 plt.style.use('seaborn')
 
